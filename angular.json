@@ -2,11 +2,12 @@
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "version": 1,
   "cli": {
-    "packageManager": "npm"
+    "packageManager": "npm",
+    "analytics": false
   },
   "newProjectRoot": "projects",
   "projects": {
-    "ab-filmes-gerenciador-filmes-angular-21": {
+    "gerenciador-filmes-teste": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -56,10 +57,10 @@
           "builder": "@angular/build:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "ab-filmes-gerenciador-filmes-angular-21:build:production"
+              "buildTarget": "gerenciador-filmes-teste:build:production"
             },
             "development": {
-              "buildTarget": "ab-filmes-gerenciador-filmes-angular-21:build:development"
+              "buildTarget": "gerenciador-filmes-teste:build:development"
             }
           },
           "defaultConfiguration": "development"

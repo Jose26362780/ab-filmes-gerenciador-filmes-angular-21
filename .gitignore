@@ -41,3 +41,17 @@ __screenshots__/
 # System files
 .DS_Store
 Thumbs.db
+
+# Dados sensíveis
+server/data/users.json
+server/data/favorites.json
+server/data/movies.json
+
+# Variáveis de ambiente
+.env
+.env.local
+.env.*.local
+
+# Uploads de usuários
+server/public/uploads/*
+!server/public/uploads/.gitkeep

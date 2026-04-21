@@ -1,0 +1,22 @@
+[
+  {
+    "id": 1,
+    "titulo": "Exemplo Filme 1",
+    "descricao": "Descrição do filme",
+    "genero": "Ação",
+    "anoLancamento": 2024,
+    "caminhoImagem": "/uploads/image-example-1.jpg",
+    "qtdVotos": 0,
+    "mediaVotos": 0
+  },
+  {
+    "id": 2,
+    "titulo": "Exemplo Filme 2",
+    "descricao": "Outro filme de exemplo",
+    "genero": "Ficção Científica",
+    "anoLancamento": 2024,
+    "caminhoImagem": "/uploads/image-example-2.jpg",
+    "qtdVotos": 0,
+    "mediaVotos": 0
+  }
+]

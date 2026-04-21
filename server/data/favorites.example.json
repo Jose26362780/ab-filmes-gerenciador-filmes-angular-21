@@ -1,0 +1,11 @@
+
+[
+  {
+    "userId": 0,
+    "movieIds": [1, 2]
+  },
+  {
+    "userId": 1,
+    "movieIds": [2, 3]
+  }
+]
