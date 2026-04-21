@@ -5,7 +5,6 @@ import { MoviesList } from '../../../../shared/components/movies-list/movies-lis
   selector: 'app-explore-movies',
   imports: [MoviesList],
   templateUrl: './explore-movies.html',
-  styleUrl: './explore-movies.css',
 })
 export class ExploreMovies {
   movies = signal([{}]);

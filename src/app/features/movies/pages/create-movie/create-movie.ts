@@ -4,7 +4,6 @@ import { Component, signal, WritableSignal } from '@angular/core';
   selector: 'app-create-movie',
   imports: [],
   templateUrl: './create-movie.html',
-  styleUrl: './create-movie.css',
 })
 export class CreateMovie {
   // Sinal para armazenar o URL da pré-visualização da imagem

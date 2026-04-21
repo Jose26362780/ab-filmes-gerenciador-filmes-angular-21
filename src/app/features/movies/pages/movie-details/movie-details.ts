@@ -4,7 +4,6 @@ import { Component, signal, WritableSignal } from '@angular/core';
   selector: 'app-movie-details',
   imports: [],
   templateUrl: './movie-details.html',
-  styleUrl: './movie-details.css',
 })
 export class MovieDetails {
   reviewsCount = 5;

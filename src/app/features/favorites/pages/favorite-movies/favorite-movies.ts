@@ -5,6 +5,5 @@ import { MoviesList } from '../../../../shared/components/movies-list/movies-lis
   selector: 'app-favorite-movies',
   imports: [MoviesList],
   templateUrl: './favorite-movies.html',
-  styleUrl: './favorite-movies.css',
 })
 export class FavoriteMovies {}
