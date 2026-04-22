@@ -7,6 +7,7 @@ import { ExploreMovies } from './features/movies/pages/explore-movies/explore-mo
 import { MainLayout } from './core/layout/main-layout/main-layout';
 import { MovieDetails } from './features/movies/pages/movie-details/movie-details';
 import { CreateMovie } from './features/movies/pages/create-movie/create-movie';
+import { authGuard } from './core/guards/auth-guard';
 
 export const routes: Routes = [
   {
@@ -25,6 +26,7 @@ export const routes: Routes = [
   {
     path: '',
     component: MainLayout,
+    canActivate: [authGuard],
     children: [
       {
         path: '',
