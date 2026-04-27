@@ -1,4 +1,4 @@
-import { Component, DestroyRef, inject, signal } from '@angular/core';
+import { Component, computed, DestroyRef, inject, signal } from '@angular/core';
 import { email, form, minLength, required, Field } from '@angular/forms/signals';
 import { UserApi } from '../../../../core/services/user-api';
 import { Router } from '@angular/router';
@@ -6,6 +6,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { rxResource, takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { tap } from 'rxjs';
 import { ILoginParams } from '../../models/login-params';
+import { setErroMessage } from '../../../../shared/utils/set-error-message';
 
 @Component({
   selector: 'app-login-form',
@@ -15,8 +16,6 @@ import { ILoginParams } from '../../models/login-params';
 export class LoginForm {
   private readonly _userApi = inject(UserApi);
   private readonly _router = inject(Router);
-
-  loginErrorMessage = signal<string>('');
 
   loginModel = signal<ILoginParams>({
     email: '',
@@ -30,7 +29,7 @@ export class LoginForm {
     email(fieldPath.email, { message: 'O E-mail está inválido.' });
 
     required(fieldPath.password, { message: 'a Senha é obrigatória.' });
-    minLength(fieldPath.password, 8, { message: ' A seanha deve ter no minimo 8 caracteres.' });
+    minLength(fieldPath.password, 8, { message: ' A senha deve ter no minimo 8 caracteres.' });
   });
 
   loginParams = signal<ILoginParams | undefined>(undefined);
@@ -42,6 +41,8 @@ export class LoginForm {
         .login(params.email, params.password)
         .pipe(tap(() => this._router.navigate(['/explore']))),
   });
+
+  loginError = computed(() => setErroMessage(this.loginResource.error()));
 
   login() {
     const { email, password } = this.loginForm().value();

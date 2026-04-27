@@ -47,7 +47,10 @@
     Entrar
   </button>
 
-  @if (loginErrorMessage()) {
-    <p class="text-sm font-bold text-red-400">{{ loginErrorMessage() }}</p>
+  @if (loginError()) {
+    <p class="text-sm font-bold text-red-400">{{ loginError() }}</p>
+  } @else {
+    <p class="text-sm font-bold text-red-400">&nbsp;</p>
   }
+
 </div>
