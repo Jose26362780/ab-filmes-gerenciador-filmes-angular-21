@@ -45,8 +45,8 @@ export class LoginForm {
   loginError = computed(() => setErroMessage(this.loginResource.error()));
 
   login() {
-    const { email, password } = this.loginForm().value();
+    const credentials = this.loginForm().value();
 
-    this.loginParams.set({ email, password });
+    this.loginParams.set(credentials);
   }
 }
