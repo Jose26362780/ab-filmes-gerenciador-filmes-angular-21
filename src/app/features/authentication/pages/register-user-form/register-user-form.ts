@@ -1,9 +1,10 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, computed, inject, signal } from '@angular/core';
 import { Field, form, minLength, required, validate } from '@angular/forms/signals';
 import { confirmPassword } from '../../validators/confirm-password';
 import { UserApi } from '../../../../core/services/user-api';
 import { rxResource } from '@angular/core/rxjs-interop';
 import { IRegisterParams } from '../../models/register-params';
+import { setErrorMessage } from '../../../../shared/utils/set-error-message';
 
 @Component({
   selector: 'app-register-user-form',
@@ -36,8 +37,9 @@ export class RegisterUserForm {
     stream: ({ params }) => this._userApi.register(params.name, params.email, params.password),
   });
 
-  register() {
+  registerError = computed(() => setErrorMessage(this.registerResource.error()));
 
+  register() {
     const userInfos = this.registerForm().value();
 
     this.registerParams.set(userInfos);

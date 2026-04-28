@@ -1,6 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 
-export const setErroMessage = (error: Error | undefined) => {
+export const setErrorMessage = (error: Error | undefined) => {
   const cause = error?.cause as HttpErrorResponse;
 
   if (!cause) {

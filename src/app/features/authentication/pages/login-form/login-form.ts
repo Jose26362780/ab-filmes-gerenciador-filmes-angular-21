@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { rxResource } from '@angular/core/rxjs-interop';
 import { tap } from 'rxjs';
 import { ILoginParams } from '../../models/login-params';
-import { setErroMessage } from '../../../../shared/utils/set-error-message';
+import { setErrorMessage } from '../../../../shared/utils/set-error-message';
 
 @Component({
   selector: 'app-login-form',
@@ -41,7 +41,7 @@ export class LoginForm {
         .pipe(tap(() => this._router.navigate(['/explore']))),
   });
 
-  loginError = computed(() => setErroMessage(this.loginResource.error()));
+  loginError = computed(() => setErrorMessage(this.loginResource.error()));
 
   login() {
     const credentials = this.loginForm().value();
