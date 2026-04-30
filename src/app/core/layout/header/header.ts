@@ -21,6 +21,7 @@ export class Header {
 
   logout() {
     this._userTokenStore.removeToken();
+    this._userInfosStore.removeUser();
 
     this._router.navigate(['/auth/login']);
   }
