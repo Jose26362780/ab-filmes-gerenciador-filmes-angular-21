@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { UserTokenStore } from '../../services/user-token-store';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -6,6 +8,9 @@ import { Component } from '@angular/core';
   templateUrl: './header.html',
 })
 export class Header {
+  private readonly _userTokenStore = inject(UserTokenStore);
+  private readonly _router = inject(Router);
+
   isMenuOpen = false;
 
   toggleMenu() {
@@ -13,6 +18,8 @@ export class Header {
   }
 
   logout() {
-    console.log('Saindo do sistema...');
+    this._userTokenStore.removeToken();
+
+    this._router.navigate(['/auth/login']);
   }
 }
