@@ -1,11 +1,13 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, linkedSignal } from '@angular/core';
 import { UserTokenStore } from '../../services/user-token-store';
-import { Router, RouterLink, RouterLinkActive } from '@angular/router';
+import { NavigationEnd, Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { UserInfosStore } from '../../services/user-infos-store';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { filter } from 'rxjs';
 
 @Component({
   selector: 'app-header',
-  imports: [RouterLink ,RouterLinkActive],
+  imports: [RouterLink, RouterLinkActive],
   templateUrl: './header.html',
 })
 export class Header {
@@ -13,10 +15,17 @@ export class Header {
   private readonly _router = inject(Router);
   readonly _userInfosStore = inject(UserInfosStore);
 
-  isMenuOpen = false;
+  navigateEnd = toSignal(
+    this._router.events.pipe(filter((event) => event instanceof NavigationEnd)),
+  );
+
+  isMenuOpen = linkedSignal({
+    source: this.navigateEnd,
+    computation: () => false,
+  });
 
   toggleMenu() {
-    this.isMenuOpen = !this.isMenuOpen;
+    this.isMenuOpen.update((currentValue) => !currentValue);
   }
 
   logout() {
