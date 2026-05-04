@@ -1,3 +1,5 @@
+<p class="text-white">{{ moviesFiltered() | json }}</p>
+
 <div
   class="h-[calc(100vh-5rem)] w-full bg-[#121214] text-gray-100 font-sans flex flex-col overflow-hidden"
 >
@@ -67,7 +69,7 @@
         </button>
       </div>
     } @else {
-      <app-movies-list />
+      <app-movies-list [movies]="moviesFiltered()" />
     }
   </main>
 </div>
