@@ -1,15 +1,16 @@
 import { Component, input } from '@angular/core';
 import { MoviesListResponse } from '../../types/movies-list-response';
-import { JsonPipe } from '@angular/common';
+import { DecimalPipe } from '@angular/common';
 
 @Component({
   selector: 'app-movies-list',
-  imports: [JsonPipe],
+  imports: [DecimalPipe],
   templateUrl: './movies-list.html',
   host: {
     class: 'flex-1 min-h-0',
   },
 })
 export class MoviesList {
+  BASE_PATH = 'http://localhost:3000';
   movies = input<MoviesListResponse>([]);
 }

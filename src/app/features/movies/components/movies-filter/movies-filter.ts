@@ -4,8 +4,5 @@ import { Component } from '@angular/core';
   selector: 'app-movies-filter',
   imports: [],
   templateUrl: './movies-filter.html',
-  styleUrl: './movies-filter.css',
 })
-export class MoviesFilter {
-
-}
+export class MoviesFilter {}

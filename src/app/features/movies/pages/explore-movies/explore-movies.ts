@@ -3,12 +3,11 @@ import { MoviesList } from '../../../../shared/components/movies-list/movies-lis
 import { MoviesFilter } from '../../components/movies-filter/movies-filter';
 import { MoviesApi } from '../../services/movies-api';
 import { rxResource } from '@angular/core/rxjs-interop';
-import { JsonPipe } from '@angular/common';
 import { IMovieResponse } from '../../../../shared/models/movie-response';
 
 @Component({
   selector: 'app-explore-movies',
-  imports: [MoviesList, MoviesFilter, JsonPipe],
+  imports: [MoviesList, MoviesFilter],
   templateUrl: './explore-movies.html',
 })
 export class ExploreMovies {
