@@ -13,8 +13,6 @@ import { IMovieResponse } from '../../../../shared/models/movie-response';
 export class ExploreMovies {
   private readonly _moviesApi = Inject(MoviesApi);
 
-  movies = signal<IMovieResponse[]>([]);
-
   moviesResource = rxResource({
     params: () => true,
     stream: () => this._moviesApi.getMovies(),
