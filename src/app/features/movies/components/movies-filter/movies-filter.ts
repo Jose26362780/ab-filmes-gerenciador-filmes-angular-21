@@ -1,8 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, model } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-movies-filter',
-  imports: [],
+  imports: [FormsModule],
   templateUrl: './movies-filter.html',
 })
-export class MoviesFilter {}
+export class MoviesFilter {
+  title = model('');
+  category = model('');
+}

@@ -13,22 +13,33 @@ import { IMovieResponse } from '../../../../shared/models/movie-response';
 export class ExploreMovies {
   private readonly _moviesApi = Inject(MoviesApi);
 
+  movieTitleFilter = signal('');
+  movieCategoryFilter = signal('');
+
   moviesResource = rxResource({
     params: () => true,
     stream: () => this._moviesApi.getMovies(),
   });
 
-  moviesFiltered = linkedSignal<IMovieResponse[]>(() => {
+  moviesFiltered = linkedSignal(() => {
+    const moviesList = (this.moviesResource.value() ?? []) as IMovieResponse[];
     const ERROR_ON_RESPONSE = !!this.moviesResource.error();
-
-    console.log('ERROR_ON_RESPONSE', ERROR_ON_RESPONSE);
 
     if (ERROR_ON_RESPONSE) return [];
 
-    const moviesList = this.moviesResource.value() as IMovieResponse[] | undefined;
-    console.log('moviesList', moviesList);
+    const titleSearch = this.movieTitleFilter().toLocaleLowerCase().trim();
+    const categorySearch = this.movieCategoryFilter().toLocaleLowerCase().trim();
 
-    return moviesList ?? [];
+    if (!titleSearch && !categorySearch) {
+      return moviesList;
+    }
+
+    return moviesList.filter((movie) => {
+      const matchesTitle = movie.titulo.toLowerCase().includes(titleSearch);
+      const matchesCategory = movie.genero.toLowerCase().includes(categorySearch);
+
+      return matchesTitle && matchesCategory;
+    });
   });
 
   adicionarFilme() {}

@@ -30,7 +30,7 @@
         </button>
       </div>
 
-      <app-movies-filter />
+      <app-movies-filter [(title)]="movieTitleFilter" [(category)]="movieCategoryFilter" />
     </div>
 
     @if (moviesFiltered().length === 0) {
