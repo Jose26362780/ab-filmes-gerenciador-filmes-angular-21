@@ -1,4 +1,4 @@
-import { Component, Inject, linkedSignal, signal } from '@angular/core';
+import { Component, inject, linkedSignal, signal } from '@angular/core';
 import { MoviesList } from '../../../../shared/components/movies-list/movies-list';
 import { MoviesFilter } from '../../components/movies-filter/movies-filter';
 import { MoviesApi } from '../../services/movies-api';
@@ -11,7 +11,7 @@ import { IMovieResponse } from '../../../../shared/models/movie-response';
   templateUrl: './explore-movies.html',
 })
 export class ExploreMovies {
-  private readonly _moviesApi = Inject(MoviesApi);
+  private readonly _moviesApi = inject(MoviesApi);
 
   movieTitleFilter = signal('');
   movieCategoryFilter = signal('');
@@ -43,4 +43,9 @@ export class ExploreMovies {
   });
 
   adicionarFilme() {}
+
+  clearFilter() {
+    this.movieTitleFilter.set('');
+    this.movieCategoryFilter.set('');
+  }
 }

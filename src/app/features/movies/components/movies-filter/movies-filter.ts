@@ -9,4 +9,9 @@ import { FormsModule } from '@angular/forms';
 export class MoviesFilter {
   title = model('');
   category = model('');
+
+  clearFilter() {
+    this.title.set('');
+    this.category.set('');
+  }
 }
