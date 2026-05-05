@@ -33,7 +33,7 @@
       <app-movies-filter [(title)]="movieTitleFilter" [(category)]="movieCategoryFilter" />
     </div>
 
-    @if (moviesFiltered().length === 0) {
+    @if (moviesFiltered().length === 0 && !moviesResource.isLoading()) {
       <div class="flex-1 flex flex-col items-center justify-center text-center p-8">
         <img
           src="images/my-movies.svg"
@@ -49,9 +49,9 @@
         <p class="text-gray-500 text-sm mb-8">Que tal tentar outra busca?</p>
 
         <button
-        type="button"
-        class="flex items-center gap-2 text-gray-400 hover:text-white transition group cursor-pointer focus:outline-none focus:ring-2 focus:ring-purple-600 rounded px-2 py-1"
-        (click)="clearFilter()"
+          type="button"
+          class="flex items-center gap-2 text-gray-400 hover:text-white transition group cursor-pointer focus:outline-none focus:ring-2 focus:ring-purple-600 rounded px-2 py-1"
+          (click)="clearFilter()"
         >
           <svg
             aria-hidden="true"
