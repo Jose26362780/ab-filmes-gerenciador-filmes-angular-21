@@ -48,6 +48,17 @@ export class MovieDetails {
     return boolArray;
   });
 
+  rateMovieResource = rxResource({
+    params: () => {
+      const rating = this.currentRating() ?? 0;
+
+      if (rating > 0) return { id: +this.id(), rating };
+
+      return undefined;
+    },
+    stream: ({ params }) => this._moviesApi.rateMovie(params.id, params.rating),
+  });
+
   toggleFavorite() {
     this.isFavorite.update((value) => !value);
     console.log(`Filme agora é favorito: ${this.isFavorite()}`);
