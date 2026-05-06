@@ -1,4 +1,13 @@
-import { Component, inject, input, linkedSignal, signal, WritableSignal } from '@angular/core';
+import {
+  Component,
+  computed,
+  inject,
+  input,
+  linkedSignal,
+  Signal,
+  signal,
+  WritableSignal,
+} from '@angular/core';
 import { rxResource } from '@angular/core/rxjs-interop';
 import { MoviesApi } from '../../services/movies-api';
 import { DecimalPipe } from '@angular/common';
@@ -9,7 +18,6 @@ import { DecimalPipe } from '@angular/common';
   templateUrl: './movie-details.html',
 })
 export class MovieDetails {
-
   private readonly _moviesApi = inject(MoviesApi);
 
   readonly BASE_URL = 'http://localhost:3000';
@@ -30,7 +38,15 @@ export class MovieDetails {
   });
 
   isFavorite = signal(false);
-  currentRating: < number | undefined>(undefined) = signal(4); // Inicia com 4 estrelas preenchidas
+  currentRating = signal<number | undefined>(undefined);
+
+  startStatusFilled = computed(() => {
+    const rating = this.currentRating() ?? 0;
+
+    const boolArray = [0, 1, 2, 3, 4].map((index) => index < rating);
+
+    return boolArray;
+  });
 
   toggleFavorite() {
     this.isFavorite.update((value) => !value);
@@ -38,6 +54,10 @@ export class MovieDetails {
   }
 
   updateRating(newRating: number) {
-
+    if (newRating === this.currentRating()) {
+      this.currentRating.set(0);
+    } else {
+      this.currentRating.set(newRating);
+    }
   }
 }
