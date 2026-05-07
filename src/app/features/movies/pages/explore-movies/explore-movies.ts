@@ -4,10 +4,11 @@ import { MoviesFilter } from '../../components/movies-filter/movies-filter';
 import { MoviesApi } from '../../services/movies-api';
 import { rxResource } from '@angular/core/rxjs-interop';
 import { IMovieResponse } from '../../../../shared/models/movie-response';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-explore-movies',
-  imports: [MoviesList, MoviesFilter],
+  imports: [MoviesList, MoviesFilter, RouterLink],
   templateUrl: './explore-movies.html',
 })
 export class ExploreMovies {
