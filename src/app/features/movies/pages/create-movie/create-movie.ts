@@ -3,10 +3,11 @@ import { FormsModule } from '@angular/forms';
 import { rxResource } from '@angular/core/rxjs-interop';
 import { MoviesApi } from '../../services/movies-api';
 import { setErrorMessage } from '../../../../shared/utils/set-error-message';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-create-movie',
-  imports: [FormsModule],
+  imports: [FormsModule, RouterLink],
   templateUrl: './create-movie.html',
 })
 export class CreateMovie {
@@ -73,9 +74,5 @@ export class CreateMovie {
     console.log('selectedFile', this.selectedFile());
 
     console.log('Filme salvo!');
-  }
-
-  cancelar() {
-    console.log('Operação cancelada!');
   }
 }
