@@ -1,5 +1,7 @@
-import { Component, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { rxResource } from '@angular/core/rxjs-interop';
+import { MoviesApi } from '../../services/movies-api';
 
 @Component({
   selector: 'app-create-movie',
@@ -7,6 +9,8 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './create-movie.html',
 })
 export class CreateMovie {
+  private readonly _moviesApi = inject(MoviesApi);
+
   title = signal<string>('');
   year = signal<number | undefined>(undefined);
   category = signal<string>('');
@@ -14,6 +18,13 @@ export class CreateMovie {
 
   imagePreview = signal<string | undefined>(undefined);
   selectedFile = signal<File | undefined>(undefined);
+
+  movieFormData = signal<FormData | undefined>(undefined);
+
+  createMovieResource = rxResource({
+    params: () => this.movieFormData(),
+    stream: ({ params }) => this._moviesApi.createMovie(params),
+  });
 
   onFileSelected(event: Event) {
     const input = event.target as HTMLInputElement;
@@ -34,6 +45,16 @@ export class CreateMovie {
   }
 
   salvar() {
+    const formData = new FormData();
+
+    formData.append('titulo', this.title());
+    formData.append('descricao', this.description());
+    formData.append('anoLancamento', this.year()?.toString() ?? '');
+    formData.append('genero', this.category());
+    formData.append('image', this.selectedFile() ?? '');
+
+    this.movieFormData.set(formData);
+
     console.log('title', this.title());
     console.log('year', this.year());
     console.log('description', this.description());
