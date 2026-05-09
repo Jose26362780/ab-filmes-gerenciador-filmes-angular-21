@@ -145,13 +145,15 @@
         </button>
       </div>
 
-      @if (errorMessage()) {
-        <p class="text-sm font-bold text-red-400">{{ errorMessage() }}</p>
-      } @else if (successMessage()) {
-        <p class="text-sm font-bold text-green-400">{{ successMessage() }}</p>
-      } @else {
-        <p class="text-sm font-bold text-red-400">&nbsp;</p>
-      }
+      <div class="flex justify-end">
+        @if (errorMessage()) {
+          <p class="text-sm font-bold text-red-400">{{ errorMessage() }}</p>
+        } @else if (successMessage()) {
+          <p class="text-sm font-bold text-green-400">{{ successMessage() }}</p>
+        } @else {
+          <p class="text-sm font-bold text-red-400">&nbsp;</p>
+        }
+      </div>
     </div>
   </div>
 </div>
