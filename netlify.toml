@@ -2,7 +2,7 @@
 
 [build]
   # Comando de build
-  command = "npm install --legacy-peer-deps && npm run build"
+  command = "npm ci && npm run build"
   # Pasta que será publicada
   publish = "dist/gerenciador-filmes-teste/browser"
   functions = "server/dist"
