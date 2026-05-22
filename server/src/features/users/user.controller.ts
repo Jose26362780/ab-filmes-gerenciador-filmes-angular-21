@@ -7,7 +7,7 @@ import { User, UserResponse } from './user.interface';
 import { AuthenticatedRequest } from '../../middlewares/auth.middleware';
 
 const userService = new UserService();
-const JWT_SECRET = 'minha_chave_secreta_super_segura';
+const JWT_SECRET = process.env.JWT_SECRET || 'minha_chave_secreta_super_segura';
 
 export class UserController {
   // REGISTRO

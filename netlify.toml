@@ -1,0 +1,65 @@
+# Netlify Configuration for Angular + Express API
+
+[build]
+  # Comando de build
+  command = "npm ci --include=dev && npm run build"
+  # Pasta que será publicada
+  publish = "dist/gerenciador-filmes-teste/browser"
+
+# Redirecionamentos e rewrites
+[[redirects]]
+  # Redireciona todas as rotas para index.html (SPA)
+  from = "/*"
+  to = "/index.html"
+  status = 200
+  conditions = {Language = ["pt-BR"]}
+
+# Headers de segurança
+[[headers]]
+  for = "/*"
+  [headers.values]
+    # Previne cliques em iframes
+    X-Frame-Options = "DENY"
+    # Previne MIME sniffing
+    X-Content-Type-Options = "nosniff"
+    # Habilita proteção XSS
+    X-XSS-Protection = "1; mode=block"
+    # Content Security Policy (ajuste as origens conforme necessário)
+    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:; connect-src 'self' https://seu-api-dominio.com; frame-ancestors 'none';"
+    # Habilita Referrer Policy
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    # Permissions Policy
+    Permissions-Policy = "geolocation=(), microphone=(), camera=()"
+
+# Cache para assets
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# Cache para index.html (nunca cachear)
+[[headers]]
+  for = "/index.html"
+  [headers.values]
+    Cache-Control = "no-cache, no-store, must-revalidate"
+
+# Variáveis de ambiente para produção
+[context.production.environment]
+  NODE_ENV = "production"
+  CORS_ORIGIN = "https://seu-dominio.netlify.app"
+  JWT_SECRET = "sua_chave_jwt_segura_aqui"
+
+# Variáveis de ambiente para preview/deploy
+[context.deploy-preview.environment]
+  NODE_ENV = "staging"
+
+# Variáveis de ambiente para desenvolvimento
+[context.branch-deploy.environment]
+  NODE_ENV = "development"
+
+# Reescrita para API (se o backend também estiver no Netlify)
+# Comente se a API está em outro servidor
+# [[redirects]]
+#   from = "/api/*"
+#   to = "/.netlify/functions/api/:splat"
+#   status = 200

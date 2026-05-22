@@ -42,16 +42,62 @@ __screenshots__/
 .DS_Store
 Thumbs.db
 
-# Dados sensíveis
-server/data/users.json
-server/data/favorites.json
-server/data/movies.json
+# ============================================
+# DADOS SENSÍVEIS E CONFIGURAÇÕES PRIVADAS
+# ============================================
 
 # Variáveis de ambiente
 .env
 .env.local
 .env.*.local
+.env.production
+
+# Dados do servidor (nunca commitar dados reais)
+server/data/users.json
+server/data/favorites.json
+server/data/movies.json
+server/data/*.json
+!server/data/*.example.json
 
 # Uploads de usuários
 server/public/uploads/*
 !server/public/uploads/.gitkeep
+
+# Chaves privadas e certificados
+*.pem
+*.key
+*.crt
+*.csr
+
+# IDE Secrets
+.env.*.local
+.secrets/
+
+# Logs de produção
+*.log
+logs/
+*.log.*
+
+# Dependências do servidor
+server/node_modules/
+server/dist/
+
+# Distribuição de produção
+dist/
+build/
+
+# OS específico
+.env.*.local
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# Netlify
+.netlify/
+netlify/functions/dist/
+
+# Misc
+.cache/
+*.tmp

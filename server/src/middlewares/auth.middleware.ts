@@ -3,8 +3,8 @@
 import { Request, Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
 
-// DICA: Em um projeto real, mova isso para um arquivo de configuração ou .env
-const JWT_SECRET = 'minha_chave_secreta_super_segura';
+// JWT Secret deve estar em variável de ambiente
+const JWT_SECRET = process.env.JWT_SECRET || 'dev_secret_key_change_in_production';
 
 export interface AuthenticatedRequest extends Request {
   user?: {

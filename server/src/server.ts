@@ -6,11 +6,20 @@ import { favoriteRoutes } from './features/favorites/favorite.routes';
 import path from 'path';
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
+
+// Configuração de CORS segura
+const corsOptions = {
+  origin: process.env.CORS_ORIGIN || 'http://localhost:4200',
+  credentials: true,
+  optionsSuccessStatus: 200,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+};
 
 // Middleware
-app.use(cors()); // Libera acesso para o Angular
-app.use(express.json()); // Permite ler JSON no corpo das requisições
+app.use(cors(corsOptions));
+app.use(express.json());
 
 // Servir arquivos estáticos
 // // Ex: http://localhost:3000/uploads/minha-imagem.jpg
