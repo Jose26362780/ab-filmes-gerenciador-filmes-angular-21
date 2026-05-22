@@ -2,9 +2,13 @@
 
 [build]
   # Comando de build
-  command = "npm ci --include=dev && npm run build"
+  command = "npm install && npm run build"
   # Pasta que será publicada
   publish = "dist/gerenciador-filmes-teste/browser"
+  functions = "server/dist"
+
+[dev]
+  functions = "server/dist"
 
 # Redirecionamentos e rewrites
 [[redirects]]
